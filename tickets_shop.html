@@ -1,64 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ticket Resale Marketplace</title>
+    <title>Booker | Buy & Sell Tickets</title>
     <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Booker Logo" style="height:40px;margin-right:10px;">
+            <span class="logo-text">Booker</span>
+        </div>
+        <div class="nav-links">
+            <a href="tickets_shop.html" class="active">Home</a>
+            <a href="events.html">Events</a>
+            <a href="sell_tickets.html">Sell Tickets</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="login.html" class="login">Login</a>
+            <a href="signup.html" class="signup">Sign Up</a>
+        </div>
+    </nav>
     <header>
         <div class="header_part">
-            <h1>Safe Ticket Resale Marketplace</h1>
-            <p>Buy and Sell Tickets at Fair Prices</p>
-            <a href="#tickets" class="btn">Browse Tickets</a>
-			 <a href="#sell-ticket" class="btn sell-btn">Sell Your Ticket</a>
+            <h1>Find & Sell Event Tickets Instantly</h1>
+            <p>Buy and sell tickets for concerts, sports, and more. 100% secure and easy.</p>
+            <div class="header-btns">
+                <a href="#tickets" class="btn">Browse Tickets</a>
+                <a href="sell_tickets.html" class="btn sell-btn">Sell Your Ticket</a>
+            </div>
         </div>
     </header>
-
-    <section class="tickets" id="tickets">
-        <h2>Available Tickets</h2>
-        <div class="ticket">
-            <img src="DOS.jpg" alt="Concert Ticket">
-            <h3>Dreams Of Shihan</h3>
-            <p>Date: April 10, 2025</p>
-            <p>Price: RS.3000</p>
-            <button>Buy Now</button>
-        </div>
-        <div class="ticket">
-            <img src="CSI.jpg" alt="Football Match Ticket">
-            <h3>Cricket Match Sri Lanka Vs India</h3>
-            <p>Date: May 15, 2025</p>
-            <p>Price: Rs.1500</p>
-            <button>Buy Now</button>
-        </div>
-    </section>
-	
-<!--<section class="sell-ticket" id="sell-ticket">
-        <h2>Sell Your Ticket</h2>
-        <form>
-            <label for="event-name">Event Name:</label>
-            <input type="text" id="event-name" name="event-name" required>
-
-            <label for="event-date">Date:</label>
-            <input type="date" id="event-date" name="event-date" required>
-
-            <label for="ticket-price">Price (Rs.):</label>
-            <input type="number" id="ticket-price" name="ticket-price" required>
-
-            <label for="ticket-image">Upload Ticket Image:</label>
-            <input type="file" id="ticket-image" name="ticket-image" accept="image/*" required>
-
-            <button type="submit">Submit Ticket</button>
-        </form>
-    </section>
--->	
+    <main>
+        <section class="tickets" id="tickets">
+            <h2>Available Tickets</h2>
+            <div class="ticket">
+                <img src="DOS.jpg" alt="Concert Ticket">
+                <h3>Dreams Of Shihan</h3>
+                <p>Date: April 10, 2025</p>
+                <p>Price: Rs.3000</p>
+                <button>Buy Now</button>
+            </div>
+            <div class="ticket">
+                <img src="CSI.jpg" alt="Cricket Match Ticket">
+                <h3>Cricket Match Sri Lanka Vs India</h3>
+                <p>Date: May 15, 2025</p>
+                <p>Price: Rs.1500</p>
+                <button>Buy Now</button>
+            </div>
+            <!-- ...add more ticket cards as needed... -->
+        </section>
+    </main>
     <footer>
-        <p>&copy; 2025 Ticket Resale Platform. All Rights Reserved.</p>
-        <div class="social-icons">
-            <a href="#"><img src="fb.png" alt="Facebook"></a>
-			<a href="#"><img src="insta.png" alt="Instagram"></a>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Booker Logo" style="height:36px;">
+                <span class="footer-logo-text">Booker</span>
+            </div>
+            <div class="footer-links">
+                <a href="tickets_shop.html">Home</a>
+                <a href="events.html">Events</a>
+                <a href="sell_tickets.html">Sell Tickets</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div>
+                <div class="footer-follow-title">Follow Us</div>
+                <div class="footer-social">
+                    <a href="#"><img src="fb.png" alt="Facebook"></a>
+                    <a href="#"><img src="insta.png" alt="Instagram"></a>
+                    <a href="#"><img src="twitter.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; Booker. All Rights Reserved.
         </div>
     </footer>
-
 </body>
 </html>
