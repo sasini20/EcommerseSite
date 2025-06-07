@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Booker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f2e7;
+      color: #3c3c3c;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #e74c3c;
+      color: white;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-weight: bold;
+      font-size: 24px;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+    
+    
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background: white;
+      border-radius: 2px;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 12px;
+      padding: 40px 50px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #e74c3c;
+      font-weight: 700;
+    }
+    p.mission {
+      max-width: 650px;
+      margin: 0 auto 40px;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #555;
+      text-align: center;
+    }
+    section.team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+    }
+    .member-card {
+      background: #fdf7f5;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .member-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    .role-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .member-role {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .member-description {
+      font-size: 0.9rem;
+      color: #777;
+    }
+    section#vision,
+    section#support {
+      margin-top: 60px;
+    }
+    section#vision h2,
+    section#support h2 {
+      color: #e74c3c;
+      text-align: center;
+    }
+    section#vision p,
+    section#support p {
+      max-width: 700px;
+      margin: 20px auto;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #444;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #e74c3c;
+      color: white;
+      font-weight: 600;
+      margin-top: 40px;
+    }
+    a.member-card {
+      text-decoration: none;
+      color: inherit;
+    }
+    @media (max-width: 480px) {
+      main {
+        margin: 20px 15px;
+        padding: 20px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">🎟 Booker</div>
+    <nav>
+      <a href="tickets_shop.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="sell_tickets.html" >Sell Tickets</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+<main>
+  <h1>About Booker</h1>
+  <p class="mission">
+    At Booker, our mission is to provide a secure, easy-to-use platform where event lovers can buy and sell tickets with confidence.
+    Founded in 2024, we combine modern technology with passion for events to build a trusted community.
+  </p>
+
+  <section class="team">
+    <a href="#vision" class="member-card">
+      <div class="role-icon">🎯</div>
+      <div class="member-role">Our Vision</div>
+      <div class="member-description">Our commitment to a secure, transparent, and fair ticketing experience for all.</div>
+    </a>
+    <div class="member-card">
+      <div class="role-icon">📣</div>
+      <div class="member-role">Marketing & Outreach</div>
+      <div class="member-description">Promoting Booker and connecting with users to grow our community.</div>
+    </div>
+    <a href="#support" class="member-card">
+      <div class="role-icon">💬</div>
+      <div class="member-role">Customer Support</div>
+      <div class="member-description">Helping users with timely support, FAQs, and issue resolution 24/7.</div>
+    </a>
+  </section>
+
+  <hr style="margin: 60px 0; border: none; border-top: 1px solid #ccc;">
+
+  <section id="vision">
+    <h2>🎯 Our Vision</h2>
+    <p>
+      At Booker, we envision a world where event ticketing is seamless, fair, and community-driven. 
+      Our platform is designed to eliminate fraud, ensure transparency, and empower users to enjoy unforgettable experiences.
+      We believe in democratizing access to events and supporting local communities through responsible technology.
+    </p>
+  </section>
+
+  <section id="support">
+    <h2>💬 Customer Support</h2>
+    <p>
+      Our support team is here to help you 24/7 with any questions or issues. Whether you're a buyer or a seller, 
+      we provide timely assistance through live chat, email, and our FAQ center. Your satisfaction and trust are our top priorities.
+    </p>
+  </section>
+</main>
+
+<footer>
+  © 2025 Booker. All rights reserved.
+</footer>
+
+</body>
+</html>
