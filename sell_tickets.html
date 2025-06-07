@@ -1,78 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Sell Tickets | Booker</title>
-    <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sell Your Ticket | Booker</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-image: url('ticket_background.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      background-attachment: scroll;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav a.active {
+      color: #e74c3c;
+      border-bottom: 2px solid #e74c3c;
+      padding-bottom: 4px;
+    }
+
+    .banner {
+      background-color: rgba(231, 76, 60, 0.9);
+      color: white;
+      padding: 80px 40px 50px;
+      text-align: center;
+    }
+
+    .banner h1 {
+      font-size: 36px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: -40px auto 40px;
+      background: rgba(85, 66, 40, 0.5); /* earthy green-brown transparent */
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      color: white;
+      backdrop-filter: blur(8px); /* optional: frosted glass effect */
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #f4e9d8;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #f0f0f0;
+    }
+
+    form input,
+    form textarea,
+    form select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.7);
+      color: #333;
+    }
+
+    form input::placeholder,
+    form textarea::placeholder {
+      color: #999;
+    }
+
+    form input[type="file"] {
+      padding: 5px;
+      background: transparent;
+    }
+
+    button {
+      margin-top: 25px;
+      background-color: #2e7d32;
+      color: white;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1b5e20;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      margin-top: 60px;
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="logo.png" alt="Booker Logo" style="height:40px;margin-right:10px;">
-            <span class="logo-text">Booker</span>
-        </div>
-        <div class="nav-links">
-            <a href="tickets_shop.html">Home</a>
-            <a href="events.html">Events</a>
-            <a href="sell_tickets.html" class="active">Sell Tickets</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <div class="auth-buttons">
-            <a href="login.html" class="login">Login</a>
-            <a href="signup.html" class="signup">Sign Up</a>
-        </div>
+
+  <!-- Top Navbar -->
+  <header>
+    <div class="logo">🎟 Booker</div>
+    <nav>
+      <a href="tickets_shop.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="sell_ticket.html" class="active">Sell Tickets</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <header>
-        <div class="header_part">
-            <img src="event.jpg" alt="Event" class="header-event-img">
-            <h1>Sell Your Event Tickets</h1>
-            <p>List your tickets for sale in minutes. Reach thousands of buyers instantly.</p>
-            <a href="tickets_shop.html" class="btn">Browse Tickets</a>
-        </div>
-    </header>
-    <main>
-        <section class="sell-ticket" id="sell-ticket">
-            <h2>Sell Your Ticket</h2>
-            <form>
-                <label for="event-name">Event Name:</label>
-                <input type="text" id="event-name" name="event-name" required>
-                <label for="event-date">Date:</label>
-                <input type="date" id="event-date" name="event-date" required>
-                <label for="ticket-price">Price (Rs.):</label>
-                <input type="number" id="ticket-price" name="ticket-price" required>
-                <label for="ticket-image">Upload Ticket Image:</label>
-                <input type="file" id="ticket-image" name="ticket-image" accept="image/*" required>
-                <button type="submit">Submit Ticket</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="logo.png" alt="Booker Logo" style="height:36px;">
-                <span class="footer-logo-text">Booker</span>
-            </div>
-            <div class="footer-links">
-                <a href="tickets_shop.html">Home</a>
-                <a href="events.html">Events</a>
-                <a href="sell_tickets.html">Sell Tickets</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <div>
-                <div class="footer-follow-title">Follow Us</div>
-                <div class="footer-social">
-                    <a href="#"><img src="fb.png" alt="Facebook"></a>
-                    <a href="#"><img src="insta.png" alt="Instagram"></a>
-                    <a href="#"><img src="twitter.png" alt="Twitter"></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; Booker. All Rights Reserved.
-        </div>
-    </footer>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <h1>Sell Your Event Tickets Easily</h1>
+  </section>
+
+  <!-- Ticket Form -->
+  <div class="container">
+    <h2>Submit Ticket Details</h2>
+    <form action="/api/sell-ticket" method="POST" enctype="multipart/form-data">
+      <label for="eventName">Event Name:</label>
+      <input type="text" id="eventName" name="eventName" required>
+
+      <label for="eventDate">Event Date:</label>
+      <input type="date" id="eventDate" name="eventDate" required>
+
+      <label for="venue">Venue:</label>
+      <input type="text" id="venue" name="venue" required>
+
+      <label for="ticketCount">Number of Tickets:</label>
+      <input type="number" id="ticketCount" name="ticketCount" min="1" required>
+
+      <label for="price">Price per Ticket (Rs.):</label>
+      <input type="number" id="price" name="price" required>
+
+      <label for="sellerName">Your Name:</label>
+      <input type="text" id="sellerName" name="sellerName" required>
+
+      <label for="sellerEmail">Your Email:</label>
+      <input type="email" id="sellerEmail" name="sellerEmail" required>
+
+      <label for="ticketImage">Upload Ticket (JPG/PNG):</label>
+      <input type="file" id="ticketImage" name="ticketImage" accept=".jpg, .jpeg, .png" required>
+
+      <label for="description">Description (Optional):</label>
+      <textarea id="description" name="description" rows="4" placeholder="Add any extra details here (e.g., seat number, section, special notes)..."></textarea>
+
+      <button type="submit">Submit Ticket</button>
+    </form>
+  </div>
+
+  <footer>
+    © 2025 Booker. All rights reserved.
+  </footer>
+
 </body>
 </html>
