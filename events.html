@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Events | Booker</title>
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f0f0;
+    margin: 20px;
+  }
+  header {
+    background: #e74c3c;
+    color: white;
+    padding: 15px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  }
+  .events-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .event-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  .event-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .event-details {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .event-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #e74c3c;
+  }
+  .event-info {
+    flex-grow: 1;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  .price {
+    font-weight: bold;
+    font-size: 16px;
+    color: #2e7d32;
+  }
+  .no-tickets {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header>🎟 Booker - Available Tickets</header>
+
+<div class="container">
+  <div id="eventsList" class="events-list"></div>
+  <div id="noTickets" class="no-tickets" style="display:none;">No tickets available for sale.</div>
+</div>
+
+<script>
+  const tickets = JSON.parse(localStorage.getItem('userTickets')) || [];
+  const eventsList = document.getElementById('eventsList');
+  const noTickets = document.getElementById('noTickets');
+
+  if (tickets.length === 0) {
+    noTickets.style.display = 'block';
+  } else {
+    noTickets.style.display = 'none';
+    tickets.forEach(ticket => {
+      const card = document.createElement('div');
+      card.className = 'event-card';
+
+      card.innerHTML = `
+        <img src="${ticket.ticketImageBase64}" alt="Ticket for ${ticket.eventName}" />
+        <div class="event-details">
+          <div class="event-title">${ticket.eventName}</div>
+          <div class="event-info">
+            <strong>Date:</strong> ${ticket.eventDate}<br />
+            <strong>Venue:</strong> ${ticket.venue}<br />
+            <strong>Tickets Available:</strong> ${ticket.ticketCount}<br />
+            <strong>Seller:</strong> ${ticket.sellerName}<br />
+            <p>${ticket.description || ''}</p>
+          </div>
+          <div class="price">Rs. ${ticket.price} per ticket</div>
+        </div>
+      `;
+
+      eventsList.appendChild(card);
+    });
+  }
+</script>
+
+</body>
+</html>
