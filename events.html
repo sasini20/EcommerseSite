@@ -10,15 +10,55 @@
     background-color: #f0f0f0;
     margin: 20px;
   }
-  header {
-    background: #e74c3c;
-    color: white;
-    padding: 15px 40px;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 8px;
-  }
+  
+    header {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+  .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #e74c3c;
+    }
+
+    nav a.active {
+      color: #e74c3c;
+      border-bottom: 2px solid #e74c3c;
+      padding-bottom: 4px;
+    }
+
+    .banner {
+      background-color: rgba(231, 76, 60, 0.9);
+      color: white;
+      padding: 10px 40px 10px;
+      text-align: center;
+    }
+
+    .banner h1 {
+      font-size: 36px;
+    }
+
+
   .container {
     max-width: 900px;
     margin: 20px auto;
@@ -69,6 +109,20 @@
     font-size: 16px;
     color: #2e7d32;
   }
+  button.buy-now {
+    margin-top: 10px;
+    padding: 10px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  button.buy-now:hover {
+    background: #c0392b;
+  }
   .no-tickets {
     text-align: center;
     font-size: 18px;
@@ -79,7 +133,22 @@
 </head>
 <body>
 
-<header>🎟 Booker - Available Tickets</header>
+    <header>
+    <div class="logo">🎟 Booker</div>
+    <nav>
+      <a href="tickets_shop.html">Home</a>
+      <a href="events.html" class="active">Events</a>
+      <a href="sell_tickets.html">Sell Tickets</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <h1>🎟 Booker - Available Tickets</h1>
+  </section>
+
 
 <div class="container">
   <div id="eventsList" class="events-list"></div>
@@ -87,36 +156,68 @@
 </div>
 
 <script>
-  const tickets = JSON.parse(localStorage.getItem('userTickets')) || [];
-  const eventsList = document.getElementById('eventsList');
-  const noTickets = document.getElementById('noTickets');
+  function loadTickets() {
+    let tickets = JSON.parse(localStorage.getItem('userTickets')) || [];
 
-  if (tickets.length === 0) {
-    noTickets.style.display = 'block';
-  } else {
-    noTickets.style.display = 'none';
-    tickets.forEach(ticket => {
-      const card = document.createElement('div');
-      card.className = 'event-card';
+    // Remove tickets with ticketCount <= 0 (sold out)
+    tickets = tickets.filter(t => t.ticketCount > 0);
+    localStorage.setItem('userTickets', JSON.stringify(tickets));
 
-      card.innerHTML = `
-        <img src="${ticket.ticketImageBase64}" alt="Ticket for ${ticket.eventName}" />
-        <div class="event-details">
-          <div class="event-title">${ticket.eventName}</div>
-          <div class="event-info">
-            <strong>Date:</strong> ${ticket.eventDate}<br />
-            <strong>Venue:</strong> ${ticket.venue}<br />
-            <strong>Tickets Available:</strong> ${ticket.ticketCount}<br />
-            <strong>Seller:</strong> ${ticket.sellerName}<br />
-            <p>${ticket.description || ''}</p>
+    const eventsList = document.getElementById('eventsList');
+    const noTickets = document.getElementById('noTickets');
+
+    eventsList.innerHTML = ''; // Clear existing cards
+
+    if (tickets.length === 0) {
+      noTickets.style.display = 'block';
+    } else {
+      noTickets.style.display = 'none';
+
+      tickets.forEach((ticket, index) => {
+        const card = document.createElement('div');
+        card.className = 'event-card';
+
+        card.innerHTML = `
+          <img src="${ticket.ticketImageBase64}" alt="Ticket for ${ticket.eventName}" />
+          <div class="event-details">
+            <div class="event-title">${ticket.eventName}</div>
+            <div class="event-info">
+              <strong>Date:</strong> ${ticket.eventDate}<br />
+              <strong>Venue:</strong> ${ticket.venue}<br />
+              <strong>Tickets Available:</strong> ${ticket.ticketCount}<br />
+              <strong>Seller:</strong> ${ticket.sellerName}<br />
+              <p>${ticket.description || ''}</p>
+            </div>
+            <div class="price">Rs. ${ticket.price} per ticket</div>
+            <button class="buy-now" onclick="buyTicket(${index})">Buy Now</button>
           </div>
-          <div class="price">Rs. ${ticket.price} per ticket</div>
-        </div>
-      `;
+        `;
 
-      eventsList.appendChild(card);
-    });
+        eventsList.appendChild(card);
+      });
+    }
   }
+
+  function buyTicket(index) {
+    const tickets = JSON.parse(localStorage.getItem('userTickets')) || [];
+    const selectedTicket = tickets[index];
+    localStorage.setItem("selectedTicketIndex", index);
+    localStorage.setItem("selectedTicket", JSON.stringify(selectedTicket));
+    window.location.href = "buy_tickets.html";
+  }
+
+  loadTickets();
+
+
+  function buyTicket(index) {
+  const tickets = JSON.parse(localStorage.getItem('userTickets')) || [];
+  const selectedTicket = tickets[index];
+  localStorage.setItem("selectedTicketIndex", index);
+  localStorage.setItem("selectedTicket", JSON.stringify(selectedTicket));
+  window.location.href = "buy_tickets.html";
+}
+
+
 </script>
 
 </body>
