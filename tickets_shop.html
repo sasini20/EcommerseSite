@@ -19,17 +19,34 @@
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="auth-buttons">
-            <a href="index.html" class="login">Login</a>
-            <a href="signup.html" class="signup">Sign Up</a>
+        <div class="auth-buttons" id="authButtons">
+            <a href="form.html" class="login">Login</a>
+            <a href="form.html#register" class="signup">Sign Up</a>
         </div>
+        <!-- Greeting and Logout -->
+<div class="user-greeting" id="userGreeting" style="display: flex; align-items: center; gap: 15px; padding: 10px; background-color: #f1f1f1; border-radius: 8px; margin: 10px;">
+  <span id="usernameDisplay" style="font-size: 20px; font-weight: 600; color: #333;">Hi, Sasini</span>
+  <button type="button" id="logout" class="logout" style="
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  ">
+    Logout
+  </button>
+</div>
+
+
     </nav>
     <header>
         <div class="header_part">
             <h1>Find & Sell Event Tickets Instantly</h1>
             <p>Buy and sell tickets for concerts, sports, and more. 100% secure and easy.</p>
             <div class="header-btns">
-                <a href="#tickets" class="btn">Browse Tickets</a>
+                <a href="events.html" class="btn">Browse Tickets</a>
                 <a href="sell_tickets.html" class="btn sell-btn">Sell Your Ticket</a>
             </div>
         </div>
@@ -77,8 +94,36 @@
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; Booker. All Rights Reserved.
+            © Booker. All Rights Reserved.
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            const authButtons = document.getElementById('authButtons');
+            const userGreeting = document.getElementById('userGreeting');
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const logoutButton = document.getElementById('logout');
+
+            if (loggedInUser) {
+                // User is logged in
+                authButtons.style.display = 'none';
+                userGreeting.style.display = 'flex';
+                usernameDisplay.textContent = `Hi, ${loggedInUser}`;
+            } else {
+                // User is not logged in
+                authButtons.style.display = 'flex';
+                userGreeting.style.display = 'none';
+            }
+
+            // Handle Logout
+            logoutButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('loggedInUser');
+                window.location.href = 'form.html';
+            });
+        });
+    </script>
 </body>
 </html>
