@@ -89,15 +89,10 @@ header {
     z-index: 100;
 }
 .logo {
-    display: flex;
-    align-items: center;
-}
-.logo-text {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #e74c3c;
-    letter-spacing: 1px;
-}
+      font-size: 24px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
 .nav-links {
     display: flex;
     gap: 1.5rem;
