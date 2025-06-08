@@ -1,9 +1,5 @@
-/* ===== MyTickets.lk Inspired Styles ===== */
-
-/* Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap');
 
-/* Reset and base styles */
 body {
     font-family: 'Montserrat', Arial, sans-serif;
     margin: 0;
@@ -427,4 +423,124 @@ footer {
         padding: 10px 18px;
         font-size: 1em;
     }
+}
+.about-section {
+  padding: 60px 20px;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.about-box {
+  background-color: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+.about-icon img {
+  width: 50px;
+  margin-right: 20px;
+}
+
+.about-text h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: #2c3e50;
+}
+
+.about-text p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+  .about-box {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .about-icon img {
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
+}
+.about-section {
+  padding: 60px 20px;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.about-box {
+  background-color: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+.about-icon img {
+  width: 50px;
+  margin-right: 20px;
+}
+
+.about-text h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: #2c3e50;
+}
+
+.about-text p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+  .about-box {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .about-icon img {
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
 }
