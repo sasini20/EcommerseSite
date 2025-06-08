@@ -13,36 +13,36 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-    }
-    header {
-      background: #e74c3c;
-      color: white;
+    }    header {
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 20px 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
       font-size: 24px;
+      font-weight: bold;
+      color: #e74c3c;
     }
     nav a {
-      color: white;
-      margin-left: 20px;
+      margin: 0 20px;
       text-decoration: none;
+      color: #333;
       font-weight: 500;
-      position: relative;
+      transition: color 0.3s;
     }
-    
-    
-    nav a.active::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 100%;
-      height: 2px;
-      background: white;
-      border-radius: 2px;
+    nav a:hover {
+      color: #e74c3c;
+    }
+    nav a.active {
+      color: #e74c3c;
+      border-bottom: 2px solid #e74c3c;
+      padding-bottom: 4px;
     }
     main {
       flex-grow: 1;

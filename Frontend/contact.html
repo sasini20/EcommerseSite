@@ -12,42 +12,40 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-    }
-
-    header {
-      background-color: #e74c3c;
+    }    header {
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 20px 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: white;
-      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
       font-size: 24px;
+      font-weight: bold;
+      color: #e74c3c;
     }
 
     nav a {
-      color: white;
-      margin-left: 20px;
+      margin: 0 20px;
       text-decoration: none;
+      color: #333;
       font-weight: 500;
-      position: relative;
+      transition: color 0.3s;
     }
 
-    nav a.active,
     nav a:hover {
-      color: #fff;
+      color: #e74c3c;
     }
 
-    nav a.active::after,
-    nav a:hover::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 100%;
-      height: 2px;
-      background: white;
-      border-radius: 2px;
+    nav a.active {
+      color: #e74c3c;
+      border-bottom: 2px solid #e74c3c;
+      padding-bottom: 4px;
     }
 
     main {
