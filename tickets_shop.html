@@ -51,26 +51,42 @@
             </div>
         </div>
     </header>
-    <main>
-        <section class="tickets" id="tickets">
-            <h2>Available Tickets</h2>
-            <div class="ticket">
-                <img src="DOS.jpg" alt="Dreams Of Shihan Concert Ticket">
-                <h3>Dreams Of Shihan</h3>
-                <p>Date: April 10, 2025</p>
-                <p>Price: Rs.3000</p>
-                <button type="button">Buy Now</button>
-            </div>
-            <div class="ticket">
-                <img src="CSI.jpg" alt="Cricket Match Ticket">
-                <h3>Cricket Match Sri Lanka Vs India</h3>
-                <p>Date: May 15, 2025</p>
-                <p>Price: Rs.1500</p>
-                <button type="button">Buy Now</button>
-            </div>
-            <!-- ...add more ticket cards as needed... -->
-        </section>
-    </main>
+  <main>
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <div class="about-box vision">
+        <div class="about-icon">
+          <img src="vision-icon.png" alt="Vision Icon">
+        </div>
+        <div class="about-text">
+          <h2>Our Vision</h2>
+          <p>
+            At <strong>Booker</strong>, we envision a world where event ticketing is seamless, fair, and community-driven.
+            Our platform eliminates fraud, ensures transparency, and empowers users to enjoy unforgettable experiences.
+            We believe in democratizing access to events and supporting local communities through responsible technology.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-box intro">
+        <div class="about-icon">
+          <img src="intro-icon.png" alt="Introduction Icon">
+        </div>
+        <div class="about-text">
+          <h2>Brief Introduction</h2>
+          <p>
+            Welcome to <strong>Booker</strong> — your trusted ticket resale marketplace. Whether you're selling extra tickets
+            or searching for last-minute access to your favorite events, we connect real people with real tickets. We guarantee
+            secure, fair, and easy transactions for concerts, sports, theater, and more.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+ 
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
@@ -110,7 +126,7 @@
                 // User is logged in
                 authButtons.style.display = 'none';
                 userGreeting.style.display = 'flex';
-                usernameDisplay.textContent = `Hi, ${loggedInUser}`;
+                usernameDisplay.textContent = Hi, ${loggedInUser};
             } else {
                 // User is not logged in
                 authButtons.style.display = 'flex';
