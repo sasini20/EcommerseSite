@@ -8,10 +8,7 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="logo">
-            <img src="logo.png" alt="Booker Logo" style="height:40px;margin-right:10px;">
-            <span class="logo-text">Booker</span>
-        </div>
+        <div class="logo">🎟 Booker</div>
         <div class="nav-links">
             <a href="tickets_shop.html" class="active">Home</a>
             <a href="events.html">Events</a>
@@ -89,10 +86,7 @@
  
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">
-                <img src="logo.png" alt="Booker Logo" style="height:36px;">
-                <span class="footer-logo-text">Booker</span>
-            </div>
+           <div class="logo">🎟 Booker</div>
             <div class="footer-links">
                 <a href="tickets_shop.html">Home</a>
                 <a href="events.html">Events</a>
@@ -126,7 +120,7 @@
                 // User is logged in
                 authButtons.style.display = 'none';
                 userGreeting.style.display = 'flex';
-                usernameDisplay.textContent = Hi, ${loggedInUser};
+                usernameDisplay.textContent = `Hi, ${loggedInUser}`;
             } else {
                 // User is not logged in
                 authButtons.style.display = 'flex';
