@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles.css">
   <title>Sell Your Ticket | Booker</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     * {
       box-sizing: border-box;
@@ -19,40 +21,6 @@
       background-size: cover;
       background-attachment: scroll;
       min-height: 100vh;
-    }    header {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 20px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #e74c3c;
-    }
-
-    nav a {
-      margin: 0 20px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #e74c3c;
-    }
-
-    nav a.active {
-      color: #e74c3c;
-      border-bottom: 2px solid #e74c3c;
-      padding-bottom: 4px;
     }
 
     .banner {
@@ -66,7 +34,7 @@
       font-size: 36px;
     }
 
-    .container {
+     .container {
       max-width: 800px;
       margin: -40px auto 40px;
       background: rgba(85, 66, 40, 0.5);
@@ -75,7 +43,7 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       color: white;
       backdrop-filter: blur(8px);
-    }
+    } 
 
     h2 {
       text-align: center;
@@ -140,17 +108,21 @@
   </style>
 </head>
 <body>
-
   <!-- Top Navbar -->
   <header>
-    <div class="logo">🎟 Booker</div>
-    <nav>
-      <a href="tickets_shop.html">Home</a>
-      <a href="events.html">Events</a>
-      <a href="sell_tickets.html" class="active">Sell Tickets</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <nav class="navbar">
+        <div class="logo">🎟 Booker</div>
+        <div class="nav-links">
+            <a href="tickets_shop.html" >Home</a>
+            <a href="events.html">Events</a>
+            <a href="sell_tickets.html" class="active">Sell Tickets</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="auth-buttons" id="authButtons">
+            <a href="form.html" class="login">Login</a>
+            <a href="form.html#register" class="signup">Sign Up</a>
+        </div>
   </header>
 
   <!-- Banner -->

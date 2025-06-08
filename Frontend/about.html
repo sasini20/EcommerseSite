@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css">
   <title>About | Booker</title>
   <style>
     body {
@@ -13,7 +14,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-    }    header {
+    /* }    header {
       background-color: rgba(255, 255, 255, 0.9);
       padding: 20px 60px;
       display: flex;
@@ -42,7 +43,7 @@
     nav a.active {
       color: #e74c3c;
       border-bottom: 2px solid #e74c3c;
-      padding-bottom: 4px;
+      padding-bottom: 4px; */
     }
     main {
       flex-grow: 1;
@@ -139,14 +140,20 @@
 <body>
 
 <header>
-    <div class="logo">🎟 Booker</div>
-    <nav>
-      <a href="tickets_shop.html">Home</a>
-      <a href="events.html">Events</a>
-      <a href="sell_tickets.html" >Sell Tickets</a>
-      <a href="about.html" class="active">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+  <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">🎟 Booker</div>
+        <div class="nav-links">
+            <a href="tickets_shop.html" >Home</a>
+            <a href="events.html">Events</a>
+            <a href="sell_tickets.html">Sell Tickets</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="auth-buttons" id="authButtons">
+            <a href="form.html" class="login">Login</a>
+            <a href="form.html#register" class="signup">Sign Up</a>
+        </div>
   </header>
 
 <main>
