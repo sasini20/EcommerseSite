@@ -200,54 +200,90 @@
   </footer>
 
   <script>
-    const form = document.getElementById('ticketForm');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  const form = document.getElementById('ticketForm');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      const fileInput = document.getElementById('ticketImage');
-      const file = fileInput.files[0];
+    // Validate number of tickets
+    const ticketCount = parseInt(form.ticketCount.value, 10);
+    if (isNaN(ticketCount) || ticketCount < 1) {
+      alert('Number of tickets should be more than 0');
+      form.ticketCount.focus();
+      return;
+    }
 
-      if (!file) {
-        alert('Please upload a ticket image.');
-        return;
-      }
+    // Validate event date is not in the past
+    if (!form.eventDate.value) {
+      alert('Please enter an event date.');
+      form.eventDate.focus();
+      return;
+    }
+    const eventDate = new Date(form.eventDate.value);
+    const today = new Date();
+    today.setHours(0,0,0,0); // Ignore time part
+    if (eventDate < today) {
+      alert('Event date cannot be in the past');
+      form.eventDate.focus();
+      return;
+    }
 
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        // Base64 string of image
-        const ticketImageBase64 = event.target.result;
+    // Validate other required fields
+    if (
+      !form.eventName.value.trim() ||
+      !form.venue.value.trim() ||
+      !form.price.value ||
+      parseFloat(form.price.value) < 0 ||
+      !form.sellerName.value.trim() ||
+      !form.sellerEmail.value.trim()
+    ) {
+      alert('Please fill in all required fields with valid values.');
+      return;
+    }
 
-        // Prepare ticket data object
-        const ticketData = {
-          eventName: form.eventName.value.trim(),
-          eventDate: form.eventDate.value,
-          venue: form.venue.value.trim(),
-          ticketCount: parseInt(form.ticketCount.value),
-          price: parseFloat(form.price.value).toFixed(2),
-          sellerName: form.sellerName.value.trim(),
-          sellerEmail: form.sellerEmail.value.trim(),
-          description: form.description.value.trim(),
-          ticketImageBase64: ticketImageBase64
-        };
+    const fileInput = document.getElementById('ticketImage');
+    const file = fileInput.files[0];
 
-        // Get existing tickets from localStorage or empty array
-        const existingTickets = JSON.parse(localStorage.getItem('userTickets')) || [];
+    if (!file) {
+      alert('Please upload a ticket image.');
+      return;
+    }
 
-        // Add new ticket
-        existingTickets.push(ticketData);
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      // Base64 string of image
+      const ticketImageBase64 = event.target.result;
 
-        // Save back to localStorage
-        localStorage.setItem('userTickets', JSON.stringify(existingTickets));
-
-        alert('Ticket submitted successfully!');
-
-        // Clear form
-        form.reset();
+      // Prepare ticket data object
+      const ticketData = {
+        eventName: form.eventName.value.trim(),
+        eventDate: form.eventDate.value,
+        venue: form.venue.value.trim(),
+        ticketCount: ticketCount,
+        price: parseFloat(form.price.value).toFixed(2),
+        sellerName: form.sellerName.value.trim(),
+        sellerEmail: form.sellerEmail.value.trim(),
+        description: form.description.value.trim(),
+        ticketImageBase64: ticketImageBase64
       };
 
-      reader.readAsDataURL(file);
-    });
-  </script>
+      // Get existing tickets from localStorage or empty array
+      const existingTickets = JSON.parse(localStorage.getItem('userTickets')) || [];
+
+      // Add new ticket
+      existingTickets.push(ticketData);
+
+      // Save back to localStorage
+      localStorage.setItem('userTickets', JSON.stringify(existingTickets));
+
+      alert('Ticket submitted successfully!');
+
+      // Clear form
+      form.reset();
+    };
+
+    reader.readAsDataURL(file);
+  });
+</script>
 
 </body>
 </html>
