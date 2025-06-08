@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECommerce site</title>
+    <link rel="stylesheet" href="../public/css/form.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div
+        id="loginMessage"
+        style="
+          display: none;
+          color: green;
+          text-align: center;
+          margin-bottom: 10px;
+        "
+      >
+        Login successful! Redirecting to shop...
+      </div>
+      <div
+        id="registerMessage"
+        style="
+          display: none;
+          color: green;
+          text-align: center;
+          margin-bottom: 10px;
+        "
+      >
+        Registration successful! Redirecting to shop...
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm">
+        <h1>Login</h1>
+        <div class="input-box">
+          <input type="text" name="username" placeholder="Username" required />
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="remember-forget">
+          <label><input type="checkbox" name="remember" />Remember me</label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <div class="register-link">
+          <p>
+            Don't have an account? <a href="#" id="showRegister">Sign up</a>
+          </p>
+        </div>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" style="display: none">
+        <h1>Register</h1>
+        <div class="input-box">
+          <input type="text" name="username" placeholder="Username" required />
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <button type="submit" class="btn">Register</button>
+        <div class="register-link">
+          <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      if (window.location.hash === "#register") {
+        document.addEventListener("DOMContentLoaded", function () {
+          document.getElementById("loginForm").style.display = "none";
+          document.getElementById("registerForm").style.display = "block";
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("showRegister")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("registerForm").style.display = "block";
+          });
+
+        document
+          .getElementById("showLogin")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            document.getElementById("registerForm").style.display = "none";
+            document.getElementById("loginForm").style.display = "block";
+          });
+
+        document
+          .getElementById("loginForm")
+          .addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const username = this.querySelector('input[name="username"]').value;
+            const password = this.querySelector('input[name="password"]').value;
+            try {
+              const res = await fetch("http://localhost:5000/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password }),
+              });
+              const data = await res.json();
+              if (res.ok && data.token) {
+                localStorage.setItem("loggedInUser", username);
+                document.getElementById("loginMessage").style.display = "block";
+                setTimeout(() => {
+                  window.location.href = "tickets_shop.html";
+                }, 2000);
+              } else {
+                alert(data.message || "Invalid username or password");
+              }
+            } catch (err) {
+              alert("Error connecting to backend.");
+            }
+          });
+
+        document
+          .getElementById("registerForm")
+          .addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const username = this.querySelector('input[name="username"]').value;
+            const password = this.querySelector('input[name="password"]').value;
+            try {
+              const res = await fetch("http://localhost:5000/api/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password }),
+              });
+              const data = await res.json();
+              if (res.ok) {
+                localStorage.setItem("loggedInUser", username);
+                document.getElementById("registerMessage").style.display =
+                  "block";
+                setTimeout(() => {
+                  window.location.href = "tickets_shop.html";
+                }, 2000);
+              } else {
+                alert(data.message || "Registration failed.");
+              }
+            } catch (err) {
+              alert("Error connecting to backend.");
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

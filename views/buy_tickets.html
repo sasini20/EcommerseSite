@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Buy Ticket | Booker</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+body {
+font-family: 'Segoe UI', sans-serif;
+background-color: #f0f0f0;
+margin: 0;
+padding: 20px;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+header {
+font-size: 28px;
+font-weight: bold;
+      color: white; 
+text-align: center;
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+
+.container {
+background-color: #ffffff;
+padding: 30px;
+      border-radius: 8px;
+max-width: 600px;
+margin: 0 auto;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.ticket-details h2 {
+font-size: 24px;
+      color: #e74c3c; 
+margin-bottom: 10px;
+}
+
+.ticket-details p {
+font-size: 16px;
+color: #555;
+margin: 5px 0;
+}
+
+.form-group {
+margin: 20px 0;
+}
+
+.form-group label {
+display: block;
+font-size: 14px;
+font-weight: 600;
+color: #333;
+margin-bottom: 8px;
+}
+
+input, select {
+width: 100%;
+padding: 12px;
+font-size: 16px;
+border: 1px solid #ddd; /* Match events.html border */
+border-radius: 6px; /* Match button radius */
+box-sizing: border-box;
+transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+border-color: #e74c3c; /* Match events.html accent color */
+outline: none;
+box-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
+}
+
+.card-info {
+display: flex;
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.card-info input {
+flex: 1;
+min-width: 120px;
+}
+
+.error-message {
+color: #e74c3c;
+font-size: 14px;
+margin-top: 5px;
+display: none;
+}
+
+.buy-button {
+margin-top: 30px;
+background-color: #e74c3c; /* Match events.html buy-now button */
+color: #ffffff;
+padding: 14px;
+border: none;
+border-radius: 6px; /* Match events.html button */
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+width: 100%;
+transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buy-button:hover {
+background-color: #c0392b; /* Match events.html hover */
+transform: translateY(-2px);
+}
+
+.buy-button:active {
+transform: translateY(0);
+}
+
+.buy-button:disabled {
+background-color: #cccccc;
+cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+.container {
+padding: 20px;
+}
+
+header {
+font-size: 24px;
+}
+
+.ticket-details h2 {
+font-size: 20px;
+}
+
+.card-info {
+flex-direction: column;
+gap: 10px;
+}
+}
+</style>
+</head>
+<body>
+<header>🎟 Booker - Buy Ticket</header>
+
+<div class="container" id="ticketDetails">
+<div class="ticket-details">
+<h2 id="eventName">Event: Loading...</h2>
+<p id="eventDate">Date: Loading...</p>
+<p id="eventVenue">Venue: Loading...</p>
+<p id="eventPrice">Price: Loading...</p>
+<p id="eventSeller">Seller: Loading...</p>
+</div>
+
+<form id="purchaseForm">
+<div class="form-group">
+<label for="quantity">Quantity</label>
+<input type="number" id="quantity" min="1" value="1" required />
+<div class="error-message" id="quantityError">Please enter a valid quantity (1-<span id="maxQuantity">10</span>).</div>
+</div>
+
+<div class="form-group">
+<label for="cardholderName">Cardholder Name</label>
+<input type="text" id="cardholderName" placeholder="John Doe" required />
+<div class="error-message" id="cardholderNameError">Please enter a valid name.</div>
+</div>
+
+<div class="form-group">
+<label for="cardNumber">Card Number</label>
+<input type="text" id="cardNumber" maxlength="16" placeholder="1234 5678 9012 3456" required />
+<div class="error-message" id="cardNumberError">Please enter a valid 16-digit card number.</div>
+</div>
+
+<div class="form-group card-info">
+<div>
+<input type="text" id="expiryDate" maxlength="5" placeholder="MM/YY" required />
+<div class="error-message" id="expiryDateError">Please enter a valid expiry date (MM/YY).</div>
+</div>
+<div>
+<input type="text" id="cvv" maxlength="3" placeholder="CVV" required />
+<div class="error-message" id="cvvError">Please enter a valid 3-digit CVV.</div>
+</div>
+</div>
+
+<div class="form-group">
+<label for="paymentMethod">Payment Method</label>
+<select id="paymentMethod" required>
+<option value="">Select</option>
+<option value="visa">Visa</option>
+<option value="mastercard">Mastercard</option>
+<option value="paypal">PayPal</option>
+</select>
+<div class="error-message" id="paymentMethodError">Please select a payment method.</div>
+</div>
+
+<button type="submit" class="buy-button" disabled>Buy Now</button>
+</form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+const loggedInUser = localStorage.getItem('loggedInUser');
+if (!loggedInUser) {
+alert('Please log in to purchase tickets.');
+window.location.href = 'form.html';
+return;
+}
+
+// Load ticket details from localStorage
+const selectedTicket = JSON.parse(localStorage.getItem('selectedTicket')) || {};
+const maxQuantity = selectedTicket.ticketCount || 10;
+
+// Update ticket details
+      document.getElementById('eventName').textContent = `Event: ${selectedTicket.name || 'Unknown Event'}`;
+document.getElementById('eventDate').textContent = `Date: ${selectedTicket.eventDate || 'Unknown Date'}`;
+document.getElementById('eventVenue').textContent = `Venue: ${selectedTicket.venue || 'Unknown Venue'}`;
+document.getElementById('eventPrice').textContent = `Price: Rs. ${selectedTicket.price || '0'} per ticket`;
+document.getElementById('eventSeller').textContent = `Seller: ${selectedTicket.sellerName || 'Unknown Seller'}`;
+document.getElementById('quantity').max = maxQuantity;
+document.getElementById('maxQuantity').textContent = maxQuantity;
+
+// Form validation
+const form = document.getElementById('purchaseForm');
+const buyButton = form.querySelector('.buy-button');
+const inputs = form.querySelectorAll('input, select');
+
+function validateForm() {
+let isValid = true;
+
+// Quantity
+const quantity = document.getElementById('quantity').value;
+const quantityError = document.getElementById('quantityError');
+if (!quantity || quantity < 1 || quantity > maxQuantity) {
+quantityError.style.display = 'block';
+isValid = false;
+} else {
+quantityError.style.display = 'none';
+}
+
+// Cardholder Name
+const cardholderName = document.getElementById('cardholderName').value;
+const cardholderNameError = document.getElementById('cardholderNameError');
+if (!cardholderName || !/^[a-zA-Z\s]+$/.test(cardholderName)) {
+cardholderNameError.style.display = 'block';
+isValid = false;
+} else {
+cardholderNameError.style.display = 'none';
+}
+
+// Card Number
+const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+const cardNumberError = document.getElementById('cardNumberError');
+if (!cardNumber || !/^\d{16}$/.test(cardNumber)) {
+cardNumberError.style.display = 'block';
+isValid = false;
+} else {
+cardNumberError.style.display = 'none';
+}
+
+// Expiry Date
+        let expiryDate = document.getElementById('expiryDate').value.trim();
+const expiryDateError = document.getElementById('expiryDateError');
+        let validExpiry = false;
+        if (/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+        const [month, year] = expiryDate.split('/').map(Number);
+        const now = new Date();
+        const currentYear = now.getFullYear() % 100; 
+        const currentMonth = now.getMonth() + 1; 
+        if (year > currentYear || (year === currentYear && month >= currentMonth)) {
+        validExpiry = true;
+        }
+        }
+        if (!expiryDate || !validExpiry) {
+        expiryDateError.style.display = 'block';
+        isValid = false;
+} else {
+        expiryDateError.style.display = 'none';
+}
+
+// CVV
+const cvv = document.getElementById('cvv').value;
+const cvvError = document.getElementById('cvvError');
+if (!cvv || !/^\d{3}$/.test(cvv)) {
+cvvError.style.display = 'block';
+isValid = false;
+} else {
+cvvError.style.display = 'none';
+}
+
+// Payment Method
+const paymentMethod = document.getElementById('paymentMethod').value;
+const paymentMethodError = document.getElementById('paymentMethodError');
+if (!paymentMethod) {
+paymentMethodError.style.display = 'block';
+isValid = false;
+} else {
+paymentMethodError.style.display = 'none';
+}
+
+buyButton.disabled = !isValid;
+return isValid;
+}
+
+// Real-time validation
+inputs.forEach(input => {
+input.addEventListener('input', validateForm);
+input.addEventListener('change', validateForm);
+});
+
+      form.addEventListener('submit', async (e) => {
+e.preventDefault();
+if (validateForm()) {
+const quantity = parseInt(document.getElementById('quantity').value);
+          const username = localStorage.getItem('loggedInUser');
+         
+          const ticketId = selectedTicket._id;
+
+          if (!ticketId) {
+            alert('Ticket ID not found. Please select a ticket from the events page.');
+            return;
+          }
+
+          try {
+            const cardHolderName = document.getElementById('cardholderName').value;
+            const res = await fetch('http://localhost:5000/api/orders', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ticketId, quantity, username, cardHolderName })
+            });
+            const data = await res.json();
+            if (res.ok) {
+              alert(`✅ Payment Successful! ${quantity} ticket(s) purchased for ${selectedTicket.name || selectedTicket.eventName}.`);
+              setTimeout(() => {
+                window.location.href = 'events.html';
+              }, 1000);
+            } else {
+              alert(data.message || 'Purchase failed.');
+            }
+          } catch (err) {
+            alert('Error connecting to backend.');
+          }
+}
+});
+});
+</script>
+</body>
+</html>
