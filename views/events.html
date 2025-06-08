@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../public/css/styles.css">
   <title>Events | Booker</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f0f0;
-      margin: 20px;
+      
     }
-    header {
+    /* header {
       background-color: rgba(255, 255, 255, 0.9);
       padding: 20px 60px;
       display: flex;
@@ -20,13 +21,13 @@
       position: sticky;
       top: 0;
       z-index: 100;
-    }
+    } */
     .logo {
       font-size: 24px;
       font-weight: bold;
       color: #e74c3c;
     }
-    nav a {
+    /* nav a {
       margin: 0 20px;
       text-decoration: none;
       color: #333;
@@ -40,7 +41,7 @@
       color: #e74c3c;
       border-bottom: 2px solid #e74c3c;
       padding-bottom: 4px;
-    }
+    } */
     .banner {
       background-color: rgba(231, 76, 60, 0.9);
       color: white;
@@ -125,14 +126,20 @@
 </head>
 <body>
   <header>
-    <div class="logo">🎟 Booker</div>
-    <nav>
-      <a href="tickets_shop.html">Home</a>
-      <a href="events.html" class="active">Events</a>
-      <a href="sell_tickets.html">Sell Tickets</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+<!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">🎟 Booker</div>
+        <div class="nav-links">
+            <a href="tickets_shop.html" >Home</a>
+            <a href="events.html" class="active">Events</a>
+            <a href="sell_tickets.html" >Sell Tickets</a>
+            <a href="about.html" >About</a>
+            <a href="contact.html" >Contact</a>
+        </div>
+        <div class="auth-buttons" id="authButtons">
+            <a href="form.html" class="login">Login</a>
+            <a href="form.html#register" class="signup">Sign Up</a>
+        </div>
   </header>
   <section class="banner">
     <h1>🎟 Booker - Available Tickets</h1>

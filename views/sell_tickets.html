@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="../public/css/styles.css">
 <title>Sell Your Ticket | Booker</title>
+
 <style>
 * {
 box-sizing: border-box;
@@ -19,7 +21,7 @@ background-size: cover;
 background-attachment: scroll;
 min-height: 100vh;
 }
-header {
+/* header {
 background-color: rgba(255, 255, 255, 0.9);
 padding: 20px 60px;
 display: flex;
@@ -29,8 +31,8 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 position: sticky;
 top: 0;
 z-index: 100;
-}
-.logo {
+} */
+/* .logo {
 font-size: 24px;
 font-weight: bold;
 color: #e74c3c;
@@ -49,7 +51,7 @@ nav a.active {
 color: #e74c3c;
 border-bottom: 2px solid #e74c3c;
 padding-bottom: 4px;
-}
+} */
 .banner {
 background-color: rgba(231, 76, 60, 0.9);
 color: white;
@@ -126,14 +128,21 @@ font-size: 14px;
 </head>
 <body>
 <header>
-<div class="logo">🎟 Booker</div>
-<nav>
-<a href="tickets_shop.html">Home</a>
-<a href="events.html">Events</a>
-<a href="sell_tickets.html" class="active">Sell Tickets</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</nav>
+
+ <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">🎟 Booker</div>
+        <div class="nav-links">
+            <a href="tickets_shop.html" >Home</a>
+            <a href="events.html">Events</a>
+            <a href="sell_tickets.html" class="active">Sell Tickets</a>
+            <a href="about.html" >About</a>
+            <a href="contact.html" >Contact</a>
+        </div>
+        <div class="auth-buttons" id="authButtons">
+            <a href="form.html" class="login">Login</a>
+            <a href="form.html#register" class="signup">Sign Up</a>
+        </div>
 </header>
 <section class="banner">
 <h1>Sell Your Event Tickets Easily</h1>
