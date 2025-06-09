@@ -3,35 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="../public/css/styles.css">
+  
   <title>About | Booker</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f7f2e7;
-      color: #3c3c3c;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    /* }    header {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 20px 60px;
+      background-color: #f0f0f0;
+    }
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px 60px;
       position: sticky;
       top: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       z-index: 100;
     }
     .logo {
       font-size: 24px;
       font-weight: bold;
       color: #e74c3c;
+      font-family: sans-serif;
+    }
+    .navbar { 
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      gap: 20px;
     }
     nav a {
-      margin: 0 20px;
       text-decoration: none;
       color: #333;
       font-weight: 500;
@@ -43,7 +66,16 @@
     nav a.active {
       color: #e74c3c;
       border-bottom: 2px solid #e74c3c;
-      padding-bottom: 4px; */
+      padding-bottom: 4px;
+    }
+    .banner {
+      background-color: rgba(231, 76, 60, 0.9);
+      color: white;
+      padding: 10px 40px 10px;
+      text-align: center;
+    }
+    .banner h1 {
+      font-size: 36px;
     }
     main {
       flex-grow: 1;
@@ -54,12 +86,7 @@
       padding: 40px 50px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #e74c3c;
-      font-weight: 700;
-    }
+    
     p.mission {
       max-width: 650px;
       margin: 0 auto 40px;
@@ -140,9 +167,8 @@
 <body>
 
 <header>
-  <!-- Navigation Bar -->
-    <nav class="navbar">
         <div class="logo">🎟 Booker</div>
+        <nav class="navbar">
         <div class="nav-links">
             <a href="tickets_shop.html" >Home</a>
             <a href="events.html">Events</a>
@@ -150,14 +176,14 @@
             <a href="about.html" class="active">About</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="auth-buttons" id="authButtons">
-            <a href="form.html" class="login">Login</a>
-            <a href="form.html#register" class="signup">Sign Up</a>
-        </div>
+        </nav>
   </header>
+  <section class="banner">
+    <h1>About Booker</h1>
+  </section>
 
 <main>
-  <h1>About Booker</h1>
+  
   <p class="mission">
     At Booker, our mission is to provide a secure, easy-to-use platform where event lovers can buy and sell tickets with confidence.
     Founded in 2024, we combine modern technology with passion for events to build a trusted community.

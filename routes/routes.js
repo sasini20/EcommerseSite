@@ -135,14 +135,14 @@ router.post('/api/contact', async (req, res) => {
         let transporter = nodemailer.createTransport({
             service: 'gmail', 
             auth: {
-                user: 'hprabo970827@gmail.com', 
-                pass: 'llni abny xjmu btln'
+                user: 'sasi.hansani20@gmail.com', 
+                pass: 'bsfp frhr ypva ozrq'
             }
         });
         
         let mailOptions = {
             from: `${email}`,
-            to: 'hprabo970827@gmail.com', 
+            to: 'sasi.hansani20@gmail.com', 
             subject: `Contact Form Message from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
         };
